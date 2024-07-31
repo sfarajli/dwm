@@ -757,7 +757,7 @@ drawbar(Monitor *m)
 				x += w;
 		}
     }
-	
+
 	/* draw layout indicator if selmon->showlayout */
 	if (selmon->showlayout) {
 		w = TEXTW(m->ltsymbol);

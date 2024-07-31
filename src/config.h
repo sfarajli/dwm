@@ -2,6 +2,11 @@
 static const unsigned int borderpx  = 6;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
+static const int showtitle          = 1;        /* 0 means no title */
+static const int showtags           = 1;        /* 0 means no tags */
+static const int showlayout         = 1;        /* 0 means no layout indicator */
+static const int showstatus         = 1;        /* 0 means no status bar */
+static const int showfloating       = 1;        /* 0 means no floating indicator */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -79,6 +84,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_n,      setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY,					    XK_t,      togglebartitle, {0} },
+	{ MODKEY,                       XK_s,      togglebarstatus,{0} },
+	{ MODKEY|ShiftMask,             XK_t,      togglebartags,  {0} },
+	{ MODKEY|ShiftMask,				XK_s,      togglebarlt,    {0} },
+	{ MODKEY|ShiftMask,				XK_f,      togglebarfloat, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },

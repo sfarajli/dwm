@@ -40,8 +40,6 @@ all: dwm
 %.o: src/%.c
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}:
-
 dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 

@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const int startwithgaps	     = 1;	 /* 1 means gaps are used by default */
 static const unsigned int gappx     = 16;       /* default gap between windows in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -112,7 +112,7 @@ static const Key keys[] = {
 
 	{ Mod4Mask|ShiftMask,           XK_u,   setborderpx,    {.i = -1 } },
 	{ Mod4Mask|ShiftMask,           XK_i, 	setborderpx,    {.i = +1 } },
-	{ Mod4Mask|ShiftMask,           XK_o, 	setborderpx,    {.i = 0 } },
+	//{ Mod4Mask|ShiftMask,           XK_o, 	setborderpx,    {.i = 0 } },
 
 	{ Mod4Mask|ShiftMask,		XK_j,	moveresize,		{.v = (int []){ 0, 25, 0, 0 }}},
 	{ Mod4Mask|ShiftMask,		XK_k,	moveresize,		{.v = (int []){ 0, -25, 0, 0 }}},

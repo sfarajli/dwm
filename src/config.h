@@ -108,7 +108,7 @@ static const Key keys[] = {
 	{ Mod4Mask,                     XK_u,  	   setgaps,        {.i = -5 } },
 	{ Mod4Mask,      	        XK_i,      setgaps,        {.i = +5 } },
 	//{ Mod4Mask|ShiftMask,             XK_minus,  setgaps,        {.i = GAP_RESET } },
-	{ Mod4Mask,	                XK_o,  	   setgaps,        {.i = GAP_TOGGLE} },
+	//{ Mod4Mask,	                XK_o,  	   setgaps,        {.i = GAP_TOGGLE} },
 
 	{ Mod4Mask|ShiftMask,           XK_u,   setborderpx,    {.i = -1 } },
 	{ Mod4Mask|ShiftMask,           XK_i, 	setborderpx,    {.i = +1 } },

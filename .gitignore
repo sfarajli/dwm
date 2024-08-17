@@ -1,0 +1,4 @@
+*.orig
+*.diff
+*.rej
+config.def.h

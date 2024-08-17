@@ -101,6 +101,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+
 	{ 0     ,			XF86XK_MonBrightnessUp  ,			spawn ,			{.v = light_up}},
 	{ 0     ,			XF86XK_MonBrightnessDown,			spawn ,			{.v = light_down}},
 	{ 0     ,			XF86XK_AudioLowerVolume,			spawn ,			{.v = vol_down}},

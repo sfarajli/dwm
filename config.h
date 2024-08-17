@@ -110,6 +110,17 @@ static const Key keys[] = {
 	{ 0     ,			XF86XK_AudioRaiseVolume,			spawn ,			{.v = vol_up}},
 	{ 0     ,			XF86XK_AudioMute,				spawn ,			{.v = vol_toggle}},
 
+	{ Mod4Mask,			XK_j,		moveresize,		{.v = (int []){ 0, 25, 0, 0 }}},
+	{ Mod4Mask,			XK_k,		moveresize,		{.v = (int []){ 0, -25, 0, 0 }}},
+	{ Mod4Mask,			XK_l,		moveresize,		{.v = (int []){ 25, 0, 0, 0 }}},
+	{ Mod4Mask,			XK_h,		moveresize,		{.v = (int []){ -25, 0, 0, 0 }}},
+	{ Mod4Mask|ShiftMask,		XK_j,		moveresize,		{.v = (int []){ 0, 0, 0, 25 }}},
+	{ Mod4Mask|ShiftMask,		XK_k,		moveresize,		{.v = (int []){ 0, 0, 0, -25 }}},
+	{ Mod4Mask|ShiftMask,		XK_l,		moveresize,		{.v = (int []){ 0, 0, 25, 0 }}},
+	{ Mod4Mask|ShiftMask,		XK_h,		moveresize,		{.v = (int []){ 0, 0, -25, 0 }}},
+
+
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

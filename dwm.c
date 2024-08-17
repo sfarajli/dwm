@@ -1708,6 +1708,9 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfloating)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);
+
+	resize(selmon->sel, selmon->mw / 4 , selmon->mh /4 , selmon->mw / 2, selmon->mh / 2 , 0);
+
 	arrange(selmon);
 }
 

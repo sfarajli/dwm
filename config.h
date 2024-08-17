@@ -116,6 +116,9 @@ static const Key keys[] = {
 	{ 0     ,			XF86XK_AudioRaiseVolume,			spawn ,			{.v = vol_up}},
 	{ 0     ,			XF86XK_AudioMute,				spawn ,			{.v = vol_toggle}},
 
+	{ MODKEY|ShiftMask,             XK_minus, 	setborderpx,    {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_equal, 	setborderpx,    {.i = +1 } },
+
 	{ Mod4Mask,			XK_j,		moveresize,		{.v = (int []){ 0, 25, 0, 0 }}},
 	{ Mod4Mask,			XK_k,		moveresize,		{.v = (int []){ 0, -25, 0, 0 }}},
 	{ Mod4Mask,			XK_l,		moveresize,		{.v = (int []){ 25, 0, 0, 0 }}},

@@ -1,4 +1,6 @@
 *.orig
 *.diff
 *.rej
+*.o
+dwm
 config.def.h

@@ -102,7 +102,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 
-	{ MODKEY,           		XK_v,      focusmaster,    {0} },
+	{ MODKEY,           		XK_n,      focusmaster,    {0} },
 
 
 	{ MODKEY,                       XK_s,  	   togglescratch,  {.v = scratchpadcmd } },

@@ -69,11 +69,11 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "70x24"
 
 
 static const char
-	*light_up[] = {"slight", "-i", "5", NULL},
-	*light_down[] = {"slight", "-d", "5", NULL},
-	*vol_up[] = {"svol", "-i", "5", NULL},
-	*vol_down[] = {"svol", "-d", "5", NULL},
-	*vol_toggle[] = {"svol", "-t", NULL};
+	*light_up[] 	= {"slight", "-i", "5", NULL},
+	*light_down[] 	= {"slight", "-d", "5", NULL},
+	*vol_up[] 	= {"svol", "-i", "5", NULL},
+	*vol_down[] 	= {"svol", "-d", "5", NULL},
+	*vol_toggle[] 	= {"svol", "-t", NULL};
 
 
 static const Key keys[] = {

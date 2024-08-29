@@ -4,7 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const int startwithgaps	     = 1;	 /* 1 means gaps are used by default */
+static const int startwithgaps	    = 1;	 /* 1 means gaps are used by default */
 static const unsigned int gappx     = 16;       /* default gap between windows in pixels */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -103,6 +103,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 
 	{ MODKEY,           		XK_v,      focusmaster,    {0} },
+	{ MODKEY,           		XK_a,      togglefocusfloat,    {0} },
 
 
 	{ MODKEY,                       XK_s,  	   togglescratch,  {.v = scratchpadcmd } },

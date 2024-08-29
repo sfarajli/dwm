@@ -215,6 +215,7 @@ static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
+static void togglefocusfloat(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void togglefullscr(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -269,6 +270,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
 };
 static Atom wmatom[WMLast], netatom[NetLast];
 static int running = 1;
+static int focusfloat = 0;
 static Cur *cursor[CurLast];
 static Clr **scheme;
 static Display *dpy;
@@ -826,6 +828,12 @@ focus(Client *c)
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
 	}
+
+	if (c && c->isfloating)
+		focusfloat = 1;
+	else if (c && !c->isfloating)
+		focusfloat = 0;
+
 	selmon->sel = c;
 	drawbars();
 }
@@ -862,22 +870,59 @@ focusstack(const Arg *arg)
 	if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 		return;
 	if (arg->i > 0) {
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
-		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+		if (focusfloat)
+			for (c = selmon->sel->next; c && (!ISVISIBLE(c) || !c->isfloating); c = c->next);
+		else
+			for (c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+		if (focusfloat && !c)
+			for (c = selmon->clients; c && (!ISVISIBLE(c) || !c->isfloating); c = c->next);
+		if (!focusfloat && !c)
+			for (c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
 	} else {
-		for (i = selmon->clients; i != selmon->sel; i = i->next)
-			if (ISVISIBLE(i))
-				c = i;
-		if (!c)
-			for (; i; i = i->next)
-				if (ISVISIBLE(i))
+		for (i = selmon->clients; i != selmon->sel; i = i->next) {
+			if(!focusfloat) {
+				if (ISVISIBLE(i) && !i->isfloating)
 					c = i;
+			} else {
+				if (ISVISIBLE(i) && i->isfloating)
+					c = i;
+			}
+		}
+
+		if (!c) {
+			for (; i; i = i->next) {
+				if(!focusfloat) {
+				        if (ISVISIBLE(i) && !i->isfloating)
+						c = i;
+				} else {
+				        if (ISVISIBLE(i) && i->isfloating)
+						c = i;
+
+				}
+			}
+		}
 	}
 	if (c) {
 		focus(c);
 		restack(selmon);
 	}
+}
+
+void
+togglefocusfloat(const Arg *arg)
+{
+	Client *c = NULL;
+
+	if(focusfloat) {
+		c = nexttiled(selmon->clients);
+	} else if (!selmon->sel->isfullscreen) { /* Prevent focus shifting in fullscreen */
+		for (c = selmon->clients; c; c = c->next)
+			if (c->isfloating)
+				break;
+	}
+
+	if(c)
+		focus(c);
 }
 
 Atom
@@ -1459,12 +1504,12 @@ setborderpx(const Arg *arg)
 	if (arg->i == 0)
 		selmon->borderpx = borderpx;
 	else if (selmon->borderpx + arg->i < 0)
-		selmon->borderpx = 0;	
+		selmon->borderpx = 0;
 	else
-		selmon->borderpx += arg->i;	
-	
+		selmon->borderpx += arg->i;
+
 	for (c = selmon->clients; c; c = c->next)
-	{	
+	{
 		if (c->bw + arg->i < 0)
 			c->bw = selmon->borderpx = 0;
 		else
@@ -1792,6 +1837,7 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
 		return;
 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
+	focusfloat = !focusfloat;
 	if (selmon->sel->isfloating)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);

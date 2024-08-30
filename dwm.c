@@ -917,7 +917,7 @@ togglefocusfloat(const Arg *arg)
 		c = nexttiled(selmon->clients);
 	} else if (!selmon->sel->isfullscreen) { /* Prevent focus shifting in fullscreen */
 		for (c = selmon->clients; c; c = c->next)
-			if (c->isfloating)
+			if (c->isfloating && ISVISIBLE(c))
 				break;
 	}
 

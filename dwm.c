@@ -869,39 +869,41 @@ focusstack(const Arg *arg)
 
 	if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 		return;
+
 	if (arg->i > 0) {
-		if (focusfloat)
-			for (c = selmon->sel->next; c && (!ISVISIBLE(c) || !c->isfloating); c = c->next);
-		else
-			for (c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
-		if (focusfloat && !c)
-			for (c = selmon->clients; c && (!ISVISIBLE(c) || !c->isfloating); c = c->next);
-		if (!focusfloat && !c)
-			for (c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+		c = selmon->sel->next;
+		while (1) {
+			for (;c ; c = c->next) {
+				if (!ISVISIBLE(c))
+					continue;
+				if (focusfloat && c->isfloating)
+					break;
+				if (!focusfloat && !c->isfloating)
+					break;
+			}
+			if (!c && selmon->clients)
+				c = selmon->clients;
+			else
+				break;
+		}
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next) {
-			if(!focusfloat) {
-				if (ISVISIBLE(i) && !i->isfloating)
+			if(!focusfloat && ISVISIBLE(i) && !i->isfloating)
 					c = i;
-			} else {
-				if (ISVISIBLE(i) && i->isfloating)
+			if (focusfloat && ISVISIBLE(i) && i->isfloating)
 					c = i;
-			}
 		}
 
 		if (!c) {
 			for (; i; i = i->next) {
-				if(!focusfloat) {
-				        if (ISVISIBLE(i) && !i->isfloating)
+				if (!focusfloat && ISVISIBLE(i) && !i->isfloating)
 						c = i;
-				} else {
-				        if (ISVISIBLE(i) && i->isfloating)
+				if (focusfloat && ISVISIBLE(i) && i->isfloating)
 						c = i;
-
-				}
 			}
 		}
 	}
+
 	if (c) {
 		focus(c);
 		restack(selmon);

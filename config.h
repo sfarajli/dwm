@@ -103,7 +103,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 
 	{ MODKEY,           		XK_v,      focusmaster,    {0} },
-	{ MODKEY,           		XK_a,      togglefocusfloat,    {0} },
+	{ MODKEY|ShiftMask,           	XK_space,  togglefocusfloat,    {0} },
 
 	{ MODKEY,                       XK_s,  	   togglescratch,  {.v = scratchpadcmd } },
 

@@ -105,7 +105,6 @@ static const Key keys[] = {
 	{ MODKEY,           		XK_n,      focusmaster,    {0} },
 	{ MODKEY,           		XK_a,      togglefocusfloat,    {0} },
 
-
 	{ MODKEY,                       XK_s,  	   togglescratch,  {.v = scratchpadcmd } },
 
 

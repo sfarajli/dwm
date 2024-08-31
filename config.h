@@ -73,7 +73,8 @@ static const char
 	*light_down[] 	= {"slight", "-d", "5", NULL},
 	*vol_up[] 	= {"svol", "-i", "5", NULL},
 	*vol_down[] 	= {"svol", "-d", "5", NULL},
-	*vol_toggle[] 	= {"svol", "-t", NULL};
+	*vol_toggle[] 	= {"svol", "-t", NULL},
+	*wallpaper[] 	= {"swall", NULL};
 
 
 static const Key keys[] = {
@@ -107,6 +108,7 @@ static const Key keys[] = {
 
 	{ MODKEY,                       XK_s,  	   togglescratch,  {.v = scratchpadcmd } },
 
+	{ MODKEY|ShiftMask,             XK_w, 	   spawn,          {.v = wallpaper } },
 
 	{ 0     ,			XF86XK_MonBrightnessUp  ,			spawn ,			{.v = light_up}},
 	{ 0     ,			XF86XK_MonBrightnessDown,			spawn ,			{.v = light_down}},

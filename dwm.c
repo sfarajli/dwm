@@ -872,7 +872,8 @@ focusstack(const Arg *arg)
 
 	if (arg->i > 0) {
 		c = selmon->sel->next;
-		while (1) {
+		int i = 2;
+		while (i) {
 			for (;c ; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
@@ -885,6 +886,7 @@ focusstack(const Arg *arg)
 				c = selmon->clients;
 			else
 				break;
+			i--;
 		}
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next) {
@@ -1129,12 +1131,12 @@ manage(Window w, XWindowAttributes *wa)
 
 
 	selmon->tagset[selmon->seltags] &= ~scratchtag;
-	if (!strcmp(c->name, scratchpadname)) {
+	/*if (!strcmp(c->name, scratchpadname)) {
 		c->mon->tagset[c->mon->seltags] |= c->tags = scratchtag;
 		c->isfloating = True;
 		c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
 		c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
-	}
+	}*/
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -2295,6 +2297,7 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display");
 	checkotherwm();
+	printf("hello");
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)

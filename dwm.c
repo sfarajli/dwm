@@ -869,8 +869,8 @@ focusstack(const Arg *arg)
 
 	if (arg->i > 0) {
 		c = selmon->sel->next;
-		int i = 2;
-		while (i) {
+
+		for (int i = 0; i < 2; i++) {
 			for (;c ; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
@@ -883,8 +883,8 @@ focusstack(const Arg *arg)
 				c = selmon->clients;
 			else
 				break;
-			i--;
 		}
+
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next) {
 			if(!focusfloat && ISVISIBLE(i) && !i->isfloating)

@@ -124,8 +124,6 @@ static const Key keys[] = {
 	{ Mod4Mask|ShiftMask,		XK_l,		moveresize,		{.v = (int []){ 0, 0, 25, 0 }}},
 	{ Mod4Mask|ShiftMask,		XK_h,		moveresize,		{.v = (int []){ 0, 0, -25, 0 }}},
 
-
-
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)

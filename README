@@ -6,7 +6,7 @@ Forked from git.suckless.org/dwm
 
 Installing dwm
 --------------
-It is recommended not build dwm from this repo but
+It is recommended to not build dwm from this repo but
 instead use git.farajli.net/slcf, since it includes
 all the other necessary software for this build like slstatus, scripts, etc.
 For building it from slcf refer to the given link.

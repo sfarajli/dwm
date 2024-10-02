@@ -66,18 +66,21 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "qutebrowser", NULL };
 
 
+/* scripts */
 static const char
 	*light_up[] 	= {"slight", "-i", "5", NULL},
 	*light_down[] 	= {"slight", "-d", "5", NULL},
 	*vol_up[] 	= {"svol", "-i", "5", NULL},
 	*vol_down[] 	= {"svol", "-d", "5", NULL},
 	*vol_toggle[] 	= {"svol", "-t", NULL},
-	*wallpaper[] 	= {"swall", NULL};
+	*wallpaper[] 	= {"swall", NULL},
+	*br_prompt[] 	= {"br", NULL};
 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = br_prompt } },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browsercmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

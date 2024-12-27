@@ -22,6 +22,7 @@ Refer to the man page.
 
 Added Patches
 -------------
+- https://dwm.suckless.org/patches/preventfocusshift
 - https://dwm.suckless.org/patches/actualfullscreen
 - https://dwm.suckless.org/patches/fullgaps
 - https://dwm.suckless.org/patches/moveresize

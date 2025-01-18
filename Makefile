@@ -20,14 +20,14 @@ dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
-	rm -f dwm ${OBJ} dwm.tar.gz *.rej *.orig
+	rm -f dwm ${OBJ} dwm-farajli-$(VERSION).tar.gz *.rej *.orig 
 
 dist: clean
-	mkdir -p dwm
+	mkdir -p dwm-farajli-$(VERSION)
 	cp -R LICENSE Makefile README config.mk\
-		dwm.1 drw.h util.h config.h ${SRC} transient.c dwm
-	tar -czf dwm-farajli.tar.gz dwm
-	rm -rf dwm/
+		dwm.1 drw.h util.h config.h ${SRC} transient.c dwm-farajli-$(VERSION)
+	tar -czf dwm-farajli-$(VERSION).tar.gz dwm-farajli-$(VERSION)
+	rm -rf dwm-farajli-$(VERSION)
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin

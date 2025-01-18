@@ -26,7 +26,7 @@ dist: clean
 	mkdir -p dwm
 	cp -R LICENSE Makefile README config.mk\
 		dwm.1 drw.h util.h config.h ${SRC} transient.c dwm
-	tar -czf dwm.tar.gz dwm
+	tar -czf dwm-farajli.tar.gz dwm
 	rm -rf dwm/
 
 install: all

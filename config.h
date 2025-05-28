@@ -2,6 +2,9 @@
 
 #include <X11/XF86keysym.h>
 
+#define BROWSER "firefox"
+#define TERMINAL "st"
+
 /* appearance */
 static const unsigned int borderpx  = 2;    /* border pixel of windows */
 static const int startwithgaps     = 1;    /* 1 means gaps are used by default */
@@ -62,8 +65,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_green, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[]  = { "qutebrowser", NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
+static const char *browsercmd[]  = { BROWSER, NULL };
 
 /* scripts */
 static const char

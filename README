@@ -1,23 +1,25 @@
 dwm - dynamic window manager
 ============================
-BSPWM (github.com/baskerville/bspwm) like build of dwm,
-Forked from git.suckless.org/dwm
+My build of dwm.
+Forked from git.suckless.org/dwm.
 
 
 Installing dwm
 --------------
-It is recommended to not build dwm from this repo but
-instead use git.farajli.net/slcf, since it pulls
-all the other necessary software for this build like slstatus, scripts, etc.
-For building it from slcf refer to the given link.
+It’s recommended not to build dwm directly from this repository.
+Instead, use git.farajli.net/slcf,
+which provides a complete setup-including slstatus, custom scripts, and other essential components.
+Refer to that repository for full build and installation instructions.
 
-If dependencies are not wanted, run
+If you prefer a minimal setup without additional dependencies, you can simply run:
 make install
+This will install dwm as-is from this repository.
 
 
 Keybinds
 --------
 Refer to the man page.
+
 
 
 Added Patches

@@ -1,6 +1,8 @@
 # dwm - dynamic window manager
 # See LICENSE file for copyright and license details.
 
+.POSIX:
+
 include config.mk
 
 SRC = drw.c dwm.c util.c

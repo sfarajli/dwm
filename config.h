@@ -103,7 +103,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_period,  tagmon,         {.i = +1 } },
 	{ MODKEY,              XK_minus,   setgaps,        {.i = -1 } },
 	{ MODKEY,              XK_equal,   setgaps,        {.i = +1 } },
-	{ MODKEY,              XK_n,       focusmaster,    {0} },
+	{ MODKEY,              XK_u,       focusmaster,    {0} },
 	{ MODKEY,              XK_a,       togglefocusfloat, {0} },
 	{ MODKEY|ShiftMask,    XK_w,       spawn,          {.v = wallpaper } },
 	{ MODKEY|ShiftMask,    XK_minus,   setborderpx,    {.i = -1 } },

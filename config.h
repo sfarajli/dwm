@@ -2,7 +2,7 @@
 
 #include <X11/XF86keysym.h>
 
-#define BROWSER "firefox"
+#define BROWSER "qutebrowser"
 #define TERMINAL "st"
 
 /* appearance */
@@ -109,7 +109,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_minus,   setborderpx,    {.i = -1 } },
 	{ MODKEY|ShiftMask,    XK_equal,   setborderpx,    {.i = +1 } },
 	{ Mod4Mask|ShiftMask,  XK_0,       quit,           {0} },
-	
+
 	{ Mod4Mask,            XK_j,       moveresize,     {.v = (int []){ 0   ,25  ,0   ,0   }} },
 	{ Mod4Mask,            XK_k,       moveresize,     {.v = (int []){ 0   ,-25 ,0   ,0   }} },
 	{ Mod4Mask,            XK_l,       moveresize,     {.v = (int []){ 25  ,0   ,0   ,0   }} },
@@ -118,13 +118,13 @@ static const Key keys[] = {
 	{ Mod4Mask|ShiftMask,  XK_k,       moveresize,     {.v = (int []){ 0   ,0   ,0   ,-25 }} },
 	{ Mod4Mask|ShiftMask,  XK_l,       moveresize,     {.v = (int []){ 0   ,0   ,25  ,0   }} },
 	{ Mod4Mask|ShiftMask,  XK_h,       moveresize,     {.v = (int []){ 0   ,0   ,-25 ,0   }} },
-	
+
 	{ 0, XF86XK_MonBrightnessUp,    spawn , {.v = light_up} },
 	{ 0, XF86XK_MonBrightnessDown,  spawn , {.v = light_down} },
 	{ 0, XF86XK_AudioLowerVolume,   spawn , {.v = vol_down} },
 	{ 0, XF86XK_AudioRaiseVolume,   spawn , {.v = vol_up} },
 	{ 0, XF86XK_AudioMute,          spawn , {.v = vol_toggle} },
-	
+
 	TAGKEYS(XK_1, 0)
 	TAGKEYS(XK_2, 1)
 	TAGKEYS(XK_3, 2)

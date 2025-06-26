@@ -22,7 +22,7 @@ dwm: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
 
 clean:
-	rm -f dwm ${OBJ} dwm_farajli-$(VERSION).tar.gz *.rej *.orig 
+	rm -f dwm ${OBJ} dwm_farajli-$(VERSION).tar.gz *.rej *.orig
 
 dist: clean
 	mkdir -p dwm_farajli-$(VERSION)

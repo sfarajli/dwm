@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.5.0
+VERSION = 6.5.1
 
 # Customize below to fit your system
 

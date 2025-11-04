@@ -2,7 +2,7 @@
 
 #include <X11/XF86keysym.h>
 
-#define BROWSER "qutebrowser"
+#define BROWSER "firefox"
 #define TERMINAL "st"
 
 /* appearance */
@@ -70,18 +70,24 @@ static const char *browsercmd[]  = { BROWSER, NULL };
 
 /* scripts */
 static const char
-	*light_up[]     = {"slight", "-i", "5", NULL},
-	*light_down[]   = {"slight", "-d", "5", NULL},
-	*vol_up[]       = {"svol", "-i", "5", NULL},
-	*vol_down[]     = {"svol", "-d", "5", NULL},
-	*vol_toggle[]   = {"svol", "-t", NULL},
-	*wallpaper[]    = {"swall", NULL},
-	*br_prompt[]    = {"br", NULL};
+	*br_promptcmd[]     = {"br", NULL},
+	*light_downcmd[]    = {"slight", "-d", "5", NULL},
+	*light_upcmd[]      = {"slight", "-i", "5", NULL},
+	*vimousecmd[]       = {"vimouse", NULL},
+	*screenshotcmd[]    = {"sh", "-c", "shot -s | xargs sclip -c", NULL },
+	*zoomcmd[]          = {"zoom", NULL },
+	*vol_downcmd[]      = {"svol", "-d", "5", NULL},
+	*vol_togglecmd[]    = {"svol", "-t", NULL},
+	*vol_upcmd[]        = {"svol", "-i", "5", NULL},
+	*wallpapercmd[]     = {"swall", NULL},
+	*clipcmd[]          = {"sh", "-c", "sclip | xargs sclip -f", NULL},
+	*lockcmd[]          = {"sslock", NULL},
+	*blurlockcmd[]      = {"sslock", "-cb", NULL};
 
 static const Key keys[] = {
 	/* modifier            key         function        argument */
 	{ MODKEY,              XK_p,       spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,    XK_p,       spawn,          {.v = br_prompt } },
+	{ MODKEY|ShiftMask,    XK_p,       spawn,          {.v = br_promptcmd } },
 	{ MODKEY,              XK_Return,  spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,    XK_Return,  spawn,          {.v = browsercmd } },
 	{ MODKEY,              XK_b,       togglebar,      {0} },
@@ -105,9 +111,15 @@ static const Key keys[] = {
 	{ MODKEY,              XK_equal,   setgaps,        {.i = +1 } },
 	{ MODKEY,              XK_u,       focusmaster,    {0} },
 	{ MODKEY,              XK_a,       togglefocusfloat, {0} },
-	{ MODKEY|ShiftMask,    XK_w,       spawn,          {.v = wallpaper } },
+	{ MODKEY|ShiftMask,    XK_w,       spawn,          {.v = wallpapercmd} },
+	{ MODKEY,              XK_o,       spawn,          {.v = vimousecmd} },
+	{ MODKEY|ShiftMask,    XK_s,       spawn,          {.v = screenshotcmd} },
+	{ MODKEY,              XK_y,       spawn,          {.v = clipcmd} },
+	{ MODKEY,              XK_z,       spawn,          {.v = zoomcmd} },
 	{ MODKEY|ShiftMask,    XK_minus,   setborderpx,    {.i = -1 } },
 	{ MODKEY|ShiftMask,    XK_equal,   setborderpx,    {.i = +1 } },
+	{ Mod4Mask,            XK_l,       spawn,          {.v = lockcmd}},
+	{ Mod4Mask|ShiftMask,  XK_l,       spawn,          {.v = blurlockcmd}},
 	{ Mod4Mask|ShiftMask,  XK_0,       quit,           {0} },
 
 	{ Mod4Mask,            XK_j,       moveresize,     {.v = (int []){ 0   ,25  ,0   ,0   }} },
@@ -119,11 +131,11 @@ static const Key keys[] = {
 	{ Mod4Mask|ShiftMask,  XK_l,       moveresize,     {.v = (int []){ 0   ,0   ,25  ,0   }} },
 	{ Mod4Mask|ShiftMask,  XK_h,       moveresize,     {.v = (int []){ 0   ,0   ,-25 ,0   }} },
 
-	{ 0, XF86XK_MonBrightnessUp,    spawn , {.v = light_up} },
-	{ 0, XF86XK_MonBrightnessDown,  spawn , {.v = light_down} },
-	{ 0, XF86XK_AudioLowerVolume,   spawn , {.v = vol_down} },
-	{ 0, XF86XK_AudioRaiseVolume,   spawn , {.v = vol_up} },
-	{ 0, XF86XK_AudioMute,          spawn , {.v = vol_toggle} },
+	{ 0, XF86XK_MonBrightnessUp,    spawn , {.v = light_upcmd} },
+	{ 0, XF86XK_MonBrightnessDown,  spawn , {.v = light_downcmd} },
+	{ 0, XF86XK_AudioLowerVolume,   spawn , {.v = vol_downcmd} },
+	{ 0, XF86XK_AudioRaiseVolume,   spawn , {.v = vol_upcmd} },
+	{ 0, XF86XK_AudioMute,          spawn , {.v = vol_togglecmd} },
 
 	TAGKEYS(XK_1, 0)
 	TAGKEYS(XK_2, 1)

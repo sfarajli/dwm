@@ -4,6 +4,7 @@
 
 #define BROWSER "firefox"
 #define TERMINAL "st"
+#define NOTIFICATION_FILE "/tmp/noti.txt"
 
 /* appearance */
 static const unsigned int borderpx  = 2;    /* border pixel of windows */
@@ -170,5 +171,5 @@ static const Button buttons[] = {
 /* trigger signals using `xsetroot -name "fsignal:<signum>"` */
 static Signal signals[] = {
 	/* signum       function        argument  */
-	{ 1,            setlayout,      {.v = 0} },
+	{ 1,            updatenotification,      {.v = 0} },
 };

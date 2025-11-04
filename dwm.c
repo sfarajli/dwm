@@ -246,12 +246,13 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
-
+static void updatenotification(const Arg *arg);
 static void focusmaster(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
 static char stext[256];
+static char notification_text[100];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh;               /* bar height */
@@ -766,10 +767,20 @@ drawbar(Monitor *m)
 	}
 
 	if ((w = m->ww - tw - x) > bh) {
-		drw_setscheme(drw, scheme[SchemeNorm]);
-		drw_rect(drw, x, 0, w, bh, 1, 1);
-	}
+		if (m == selmon) {  /* Only draw text on the selected monitor */
+			int mid = (m->ww - (int)TEXTW(notification_text)) / 2 - x;
+			mid = mid >= lrpad / 2 ? mid : lrpad / 2;
+			drw_setscheme(drw, scheme[SchemeNorm]);
+			drw_text(drw, x, 0, w, bh, mid, notification_text, 0);
+		} else {
+			drw_setscheme(drw, scheme[SchemeNorm]);
+			drw_rect(drw, x, 0, w, bh, 1, 1);
+		}
 
+		/* Keep floating indicator for the selected monitor */
+		if (m == selmon && m->sel && m->sel->isfloating)
+			drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+	}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
 }
 
@@ -780,6 +791,26 @@ drawbars(void)
 
 	for (m = mons; m; m = m->next)
 		drawbar(m);
+}
+
+void
+updatenotification(const Arg *arg)
+{
+	ssize_t size = 100;
+	FILE *fp = fopen(NOTIFICATION_FILE, "r");
+	if (fp == NULL) {
+		notification_text[0] = '\0';
+		return;
+	}
+
+	if (fgets(notification_text, size, fp) == NULL) {
+		notification_text[0] = '\0';
+		return;
+	} else {
+		notification_text[strcspn(notification_text, "\n")] = '\0';
+	}
+    	fclose(fp);
+	drawbar(selmon);
 }
 
 void

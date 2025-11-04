@@ -83,7 +83,8 @@ static const char
 	*wallpapercmd[]     = {"swall", NULL},
 	*clipcmd[]          = {"sh", "-c", "sclip | xargs sclip -f", NULL},
 	*lockcmd[]          = {"sslock", NULL},
-	*blurlockcmd[]      = {"sslock", "-cb", NULL};
+	*blurlockcmd[]      = {"sslock", "-cb", NULL},
+	*clearnotifcmd[]      = {"nsend", "-s", "", NULL};
 
 static const Key keys[] = {
 	/* modifier            key         function        argument */
@@ -117,6 +118,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_s,       spawn,          {.v = screenshotcmd} },
 	{ MODKEY,              XK_y,       spawn,          {.v = clipcmd} },
 	{ MODKEY,              XK_z,       spawn,          {.v = zoomcmd} },
+	{ MODKEY,              XK_n,       spawn,          {.v = clearnotifcmd} },
 	{ MODKEY|ShiftMask,    XK_minus,   setborderpx,    {.i = -1 } },
 	{ MODKEY|ShiftMask,    XK_equal,   setborderpx,    {.i = +1 } },
 	{ Mod4Mask,            XK_l,       spawn,          {.v = lockcmd}},

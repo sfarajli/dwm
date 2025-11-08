@@ -85,7 +85,7 @@ static const char
 	*lockcmd[]          = {"sslock", NULL},
 	*simplelockcmd[]    = {"sslock", "-n", NULL},
 	*blurlockcmd[]      = {"sslock", "-cb", NULL},
-	*clearnotifcmd[]      = {"nsend", "-s", "", NULL};
+	*clearnotifcmd[]    = {"nsend", "-s", "", NULL};
 
 static const Key keys[] = {
 	/* modifier            key         function        argument */

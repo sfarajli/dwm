@@ -951,6 +951,8 @@ void
 togglefocusfloat(const Arg *arg)
 {
 	Client *c = NULL;
+	if (!selmon->sel)
+		return;
 
 	if(focusfloat) {
 		c = nexttiled(selmon->clients);
